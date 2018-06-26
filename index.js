@@ -105,12 +105,48 @@ fi = (function() {
       })
         result.map((element)=> {
           anythingArray.push(condition(element))
-          // console.log(element)
         })
-      // console.log(result)
       return anythingArray
     },
 
+    uniq: function(array, isSorted, iteratee=(n)=>n){
+     let transformations = [];
+     let result = [];
+       for (let i = 0; i < array.length; i++){
+          let transformation = iteratee(array[i]);
+          if (!transformations.includes(transformation)){
+            transformations.push(transformation);
+            result.push(array[i]);
+          }
+       }
+       return result;
+   },
+
+    keys: function(object) {
+      let arr = []
+      for (const key in object) {
+        arr.push(key)
+      }
+      return arr
+    },
+
+    values: function(object){
+      let arr = []
+      for (const key in object) {
+        arr.push(object[key])
+      }
+      return arr
+    },
+    functions: function(fi){
+      let arr = []
+      for (const key in fi) {
+        if (typeof fi[key] === "function") {
+          arr.push(key)
+        }
+      }
+      console.log(arr)
+      return arr
+    }
   }
 })()
 
